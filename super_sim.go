@@ -27,7 +27,7 @@ type SuperSim struct {
 
 // SuperSimPage represents a page of SuperSims.
 type SuperSimPage struct {
-	Meta      Meta        `json:"meta"`
+	Meta   Meta     `json:"meta"`
 	SuperSims []*SuperSim `json:"sims"`
 }
 

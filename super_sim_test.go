@@ -34,6 +34,7 @@ func assertSuperSimExpected(t *testing.T, sim *SuperSim) {
 	}
 }
 
+<<<<<<< HEAD
 func assertUsageRecordExpected(t *testing.T, usageRecord *UsageRecord) {
 	if usageRecord == nil {
 		t.Fatal("SuperSim unexpectedly nil")
@@ -58,6 +59,8 @@ func assertUsageRecordExpected(t *testing.T, usageRecord *UsageRecord) {
 	}
 }
 
+=======
+>>>>>>> d96635c (twilio: add new SuperSim client)
 func assertPageExpected(t *testing.T, meta Meta) {
 	if meta.FirstPageURL == "" {
 		t.Error("expected FirstPageURL to be populated")
