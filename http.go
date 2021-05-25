@@ -55,6 +55,10 @@ const NotifyVersion = "v1"
 const LookupBaseURL = "https://lookups.twilio.com"
 const LookupVersion = "v1"
 
+// Super sim service
+var SuperSimBaseUrl = "https://supersim.twilio.com"
+var SuperSimVersion = "v1"
+
 // Verify service
 const VerifyBaseURL = "https://verify.twilio.com"
 const VerifyVersion = "v2"
@@ -85,6 +89,7 @@ type Client struct {
 	Video      *Client
 	TaskRouter *Client
 	Insights   *Client
+	SuperSim   *Client
 
 	// FullPath takes a path part (e.g. "Messages") and
 	// returns the full API path, including the version (e.g.
@@ -125,6 +130,9 @@ type Client struct {
 	// NewWirelessClient initializes these services
 	Sims     *SimService
 	Commands *CommandService
+
+	// NewSuperSimClient initializes these services
+	SuperSims *SuperSimService
 
 	// NewNotifyClient initializes these services
 	Credentials *NotifyCredentialsService
@@ -238,6 +246,14 @@ func NewWirelessClient(accountSid string, authToken string, httpClient *http.Cli
 	c.APIVersion = WirelessVersion
 	c.Sims = &SimService{client: c}
 	c.Commands = &CommandService{client: c}
+	return c
+}
+
+// NewSuperSimClient returns a Client for use with the Twilio SuperSim API.
+func NewSuperSimClient(accountSid string, authToken string, httpClient *http.Client) *Client {
+	c := newNewClient(accountSid, authToken, SuperSimBaseUrl, httpClient)
+	c.APIVersion = SuperSimVersion
+	c.SuperSims = &SuperSimService{client: c}
 	return c
 }
 
@@ -378,6 +394,7 @@ func NewClient(accountSid string, authToken string, httpClient *http.Client) *Cl
 	c.Video = NewVideoClient(accountSid, authToken, httpClient)
 	c.TaskRouter = NewTaskRouterClient(accountSid, authToken, httpClient)
 	c.Insights = NewInsightsClient(accountSid, authToken, httpClient)
+	c.SuperSim = NewSuperSimClient(accountSid, authToken, httpClient)
 
 	c.Accounts = &AccountService{client: c}
 	c.Applications = &ApplicationService{client: c}
