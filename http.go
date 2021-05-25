@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -55,6 +56,10 @@ const NotifyVersion = "v1"
 const LookupBaseURL = "https://lookups.twilio.com"
 const LookupVersion = "v1"
 
+// Super SIM service
+var SuperSimBaseUrl = "https://supersim.twilio.com"
+var SuperSimVersion = "v1"
+
 // Verify service
 const VerifyBaseURL = "https://verify.twilio.com"
 const VerifyVersion = "v2"
@@ -85,6 +90,7 @@ type Client struct {
 	Video      *Client
 	TaskRouter *Client
 	Insights   *Client
+	SuperSim   *Client
 
 	// FullPath takes a path part (e.g. "Messages") and
 	// returns the full API path, including the version (e.g.
@@ -125,6 +131,9 @@ type Client struct {
 	// NewWirelessClient initializes these services
 	Sims     *SimService
 	Commands *CommandService
+
+	// NewSuperSimClient initializes these services
+	SuperSims     *SuperSimService
 
 	// NewNotifyClient initializes these services
 	Credentials *NotifyCredentialsService
@@ -217,6 +226,7 @@ func newNewClient(sid, token, baseURL string, client *http.Client) *Client {
 	if client == nil {
 		client = defaultHttpClient
 	}
+	fmt.Fprintf(os.Stdout, "\nbaseUrl %s\n", baseURL)
 	restClient := restclient.New(sid, token, baseURL)
 	restClient.Client = client
 	restClient.UploadType = restclient.FormURLEncoded
@@ -238,6 +248,14 @@ func NewWirelessClient(accountSid string, authToken string, httpClient *http.Cli
 	c.APIVersion = WirelessVersion
 	c.Sims = &SimService{client: c}
 	c.Commands = &CommandService{client: c}
+	return c
+}
+
+// NewSuperSimClient returns a Client for use with the Twilio Wireless API.
+func NewSuperSimClient(accountSid string, authToken string, httpClient *http.Client) *Client {
+	c := newNewClient(accountSid, authToken, SuperSimBaseUrl, httpClient)
+	c.APIVersion = SuperSimVersion
+	c.SuperSims = &SuperSimService{client: c}
 	return c
 }
 
@@ -369,6 +387,7 @@ func NewClient(accountSid string, authToken string, httpClient *http.Client) *Cl
 		return "/" + strings.Join([]string{c.APIVersion, "Accounts", c.AccountSid, pathPart + ".json"}, "/")
 	}
 	c.Monitor = NewMonitorClient(accountSid, authToken, httpClient)
+	c.SuperSim = NewSuperSimClient(accountSid, authToken, httpClient)
 	c.Pricing = NewPricingClient(accountSid, authToken, httpClient)
 	c.Fax = NewFaxClient(accountSid, authToken, httpClient)
 	c.Wireless = NewWirelessClient(accountSid, authToken, httpClient)
@@ -476,6 +495,7 @@ func (c *Client) UseSecretKey(key string) {
 // "/Messages") and sid (e.g. "MM123").
 func (c *Client) GetResource(ctx context.Context, pathPart string, sid string, v interface{}) error {
 	sidPart := strings.Join([]string{pathPart, sid}, "/")
+	fmt.Fprintf(os.Stdout, "\nsidPart %s\n", sidPart)
 	return c.MakeRequest(ctx, "GET", sidPart, nil, v)
 }
 
