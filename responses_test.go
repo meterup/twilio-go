@@ -66,6 +66,7 @@ func getServer(response []byte) (*Client, *Server) {
 	client.Video.Base = s.URL
 	client.TaskRouter.Base = s.URL
 	client.Insights.Base = s.URL
+	client.SuperSim.Base = s.URL
 	return client, s
 }
 
@@ -81,6 +82,7 @@ func getServerCode(response []byte, code int) (*Client, *Server) {
 	client.Lookup.Base = s.URL
 	client.Video.Base = s.URL
 	client.TaskRouter.Base = s.URL
+	client.SuperSim.Base = s.URL
 	return client, s
 }
 
@@ -3383,6 +3385,274 @@ var insightsCallMetricsResponse = []byte(`
         "next_page_url": null,
         "key": "metrics"
     }
+}
+`)
+
+var superSimResponse = []byte(`
+{
+   "date_updated" : "2021-04-21T20:50:47Z",
+   "fleet_sid" : "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+   "status" : "new",
+   "date_created" : "2021-04-21T20:50:47Z",
+   "sid" : "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+   "account_sid" : "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+   "unique_name" : "The Best Sim",
+   "url" : "https://supersim.twilio.com/v1/Sims/HSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+   "iccid" : "89883070000010223806"
+}
+`)
+
+var superSimPageResponse = []byte(`
+{
+   "sims" : [
+      {
+         "date_updated" : "2021-04-21T20:50:47Z",
+         "url" : "https://supersim.twilio.com/v1/Sims/HSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "unique_name" : "Sim1",
+         "iccid" : "89883070000010223806",
+         "status" : "new",
+         "date_created" : "2021-04-21T20:50:47Z",
+         "sid" : "HSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "fleet_sid" : "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "account_sid" : "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+      },
+      {
+         "status" : "new",
+         "date_created" : "2021-04-21T20:50:47Z",
+         "sid" : "HSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "fleet_sid" : "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "account_sid" : "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "date_updated" : "2021-04-21T20:50:47Z",
+         "url" : "https://supersim.twilio.com/v1/Sims/HSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "unique_name" : "Sim2",
+         "iccid" : "89883070000010223798"
+      },
+      {
+         "sid" : "HSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "fleet_sid" : "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "account_sid" : "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "status" : "new",
+         "date_created" : "2021-04-21T20:50:47Z",
+         "unique_name" : "Sim3",
+         "iccid" : "89883070000010223780",
+         "date_updated" : "2021-04-21T20:50:47Z",
+         "url" : "https://supersim.twilio.com/v1/Sims/HSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+      },
+      {
+         "status" : "new",
+         "date_created" : "2021-04-21T20:50:47Z",
+         "sid" : "HSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "fleet_sid" : "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "account_sid" : "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "date_updated" : "2021-04-21T20:50:47Z",
+         "url" : "https://supersim.twilio.com/v1/Sims/HSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "unique_name" : "Sim4",
+         "iccid" : "89883070000010223772"
+      },
+      {
+         "date_created" : "2021-04-21T20:50:47Z",
+         "status" : "new",
+         "fleet_sid" : "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "account_sid" : "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "sid" : "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "url" : "https://supersim.twilio.com/v1/Sims/HSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+         "date_updated" : "2021-04-21T20:50:47Z",
+         "iccid" : "89883070000010223764",
+         "unique_name" : "Sim5"
+      }
+   ],
+   "meta" : {
+      "next_page_url" : "https://supersim.twilio.com/v1/Sims?PageSize=5&Page=1&PageToken=FAKETOKEN",
+      "previous_page_url" : null,
+      "url" : "https://supersim.twilio.com/v1/Sims?PageSize=5&Page=0",
+      "first_page_url" : "https://supersim.twilio.com/v1/Sims?PageSize=5&Page=0",
+      "page" : 0,
+      "page_size" : 5,
+      "key" : "sims"
+   }
+}
+`)
+
+var fleetResponse = []byte(`
+{
+  "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "unique_name": "unique_name",
+  "data_enabled": true,
+  "data_limit": 1000,
+  "data_metering": "payg",
+  "date_created": "2019-07-30T20:00:00Z",
+  "date_updated": "2019-07-30T20:00:00Z",
+  "commands_enabled": true,
+  "commands_method": "GET",
+  "commands_url": "https://google.com",
+  "sms_commands_enabled": true,
+  "sms_commands_method": "GET",
+  "sms_commands_url": "https://google.com",
+  "ip_commands_method": "GET",
+  "ip_commands_url": "https://google.com",
+  "network_access_profile_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "sid": "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "url": "https://supersim.twilio.com/v1/Fleets/HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+}
+`)
+
+var fleetPageResponse = []byte(`
+{
+   "fleets" : [
+      {
+		"account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"unique_name": "unique_name",
+		"data_enabled": true,
+		"data_limit": 1000,
+		"data_metering": "payg",
+		"date_created": "2019-07-30T20:00:00Z",
+		"date_updated": "2019-07-30T20:00:00Z",
+		"commands_enabled": true,
+		"commands_method": "GET",
+		"commands_url": "https://google.com",
+		"sms_commands_enabled": true,
+		"sms_commands_method": "GET",
+		"sms_commands_url": "https://google.com",
+		"ip_commands_method": "GET",
+		"ip_commands_url": "https://google.com",
+		"network_access_profile_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"sid": "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"url": "https://supersim.twilio.com/v1/Fleets/HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	  },
+      {
+		"account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"unique_name": "unique_name",
+		"data_enabled": true,
+		"data_limit": 1000,
+		"data_metering": "payg",
+		"date_created": "2019-07-30T20:00:00Z",
+		"date_updated": "2019-07-30T20:00:00Z",
+		"commands_enabled": true,
+		"commands_method": "GET",
+		"commands_url": "https://google.com",
+		"sms_commands_enabled": true,
+		"sms_commands_method": "GET",
+		"sms_commands_url": "https://google.com",
+		"ip_commands_method": "GET",
+		"ip_commands_url": "https://google.com",
+		"network_access_profile_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"sid": "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"url": "https://supersim.twilio.com/v1/Fleets/HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	  },
+      {
+		"account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"unique_name": "unique_name",
+		"data_enabled": true,
+		"data_limit": 1000,
+		"data_metering": "payg",
+		"date_created": "2019-07-30T20:00:00Z",
+		"date_updated": "2019-07-30T20:00:00Z",
+		"commands_enabled": true,
+		"commands_method": "GET",
+		"commands_url": "https://google.com",
+		"sms_commands_enabled": true,
+		"sms_commands_method": "GET",
+		"sms_commands_url": "https://google.com",
+		"ip_commands_method": "GET",
+		"ip_commands_url": "https://google.com",
+		"network_access_profile_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"sid": "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"url": "https://supersim.twilio.com/v1/Fleets/HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	  },
+      {
+		"account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"unique_name": "unique_name",
+		"data_enabled": true,
+		"data_limit": 1000,
+		"data_metering": "payg",
+		"date_created": "2019-07-30T20:00:00Z",
+		"date_updated": "2019-07-30T20:00:00Z",
+		"commands_enabled": true,
+		"commands_method": "GET",
+		"commands_url": "https://google.com",
+		"sms_commands_enabled": true,
+		"sms_commands_method": "GET",
+		"sms_commands_url": "https://google.com",
+		"ip_commands_method": "GET",
+		"ip_commands_url": "https://google.com",
+		"network_access_profile_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"sid": "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"url": "https://supersim.twilio.com/v1/Fleets/HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	  },
+      {
+		  "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		  "unique_name": "unique_name",
+		  "data_enabled": true,
+		  "data_limit": 1000,
+		  "data_metering": "payg",
+		  "date_created": "2019-07-30T20:00:00Z",
+		  "date_updated": "2019-07-30T20:00:00Z",
+		  "commands_enabled": true,
+		  "commands_method": "GET",
+		  "commands_url": "https://google.com",
+		  "sms_commands_enabled": true,
+		  "sms_commands_method": "GET",
+		  "sms_commands_url": "https://google.com",
+		  "ip_commands_method": "GET",
+		  "ip_commands_url": "https://google.com",
+		  "network_access_profile_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		  "sid": "HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		  "url": "https://supersim.twilio.com/v1/Fleets/HFXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+		}
+   ],
+   "meta" : {
+      "next_page_url" : "https://supersim.twilio.com/v1/Fleets?PageSize=5&Page=1&PageToken=FAKETOKEN",
+      "previous_page_url" : null,
+      "url" : "https://supersim.twilio.com/v1/Fleets?PageSize=5&Page=0",
+      "first_page_url" : "https://supersim.twilio.com/v1/Fleets?PageSize=5&Page=0",
+      "page" : 0,
+      "page_size" : 5,
+      "key" : "fleets"
+   }
+}
+`)
+
+var usageRecordResponse = []byte(`
+{
+  "usage_records": [
+    {
+      "period": {
+        "start_time": "2015-05-01T20:00:00Z",
+        "end_time": "2015-06-01T20:00:00Z"
+      },
+      "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "data_upload": 1000,
+      "data_download": 1000,
+      "data_total": 2000,
+      "sim_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "fleet_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "network_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "iso_country": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    },
+    {
+      "period": {
+        "start_time": "2015-05-01T20:00:00Z",
+        "end_time": "2015-06-01T20:00:00Z"
+      },
+      "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "data_upload": 1000,
+      "data_download": 1000,
+      "data_total": 2000,
+      "sim_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "fleet_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "network_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "iso_country": "US"
+    }
+  ],
+  "meta": {
+    "first_page_url": "https://supersim.twilio.com/v1/UsageRecords?PageSize=50&Page=0",
+    "key": "usage_records",
+    "next_page_url": "https://supersim.twilio.com/v1/UsageRecords?PageSize=50&Page=1",
+    "page": 0,
+    "page_size": 50,
+    "previous_page_url": "https://supersim.twilio.com/v1/UsageRecords?PageSize=50&Page=0",
+    "url": "https://supersim.twilio.com/v1/UsageRecords?PageSize=50&Page=0"
+  }
 }
 `)
 
