@@ -56,7 +56,7 @@ const NotifyVersion = "v1"
 const LookupBaseURL = "https://lookups.twilio.com"
 const LookupVersion = "v1"
 
-// Super SIM service
+// Super sim service
 var SuperSimBaseUrl = "https://supersim.twilio.com"
 var SuperSimVersion = "v1"
 
