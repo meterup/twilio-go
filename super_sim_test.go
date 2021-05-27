@@ -34,33 +34,6 @@ func assertSuperSimExpected(t *testing.T, sim *SuperSim) {
 	}
 }
 
-<<<<<<< HEAD
-func assertUsageRecordExpected(t *testing.T, usageRecord *UsageRecord) {
-	if usageRecord == nil {
-		t.Fatal("SuperSim unexpectedly nil")
-	}
-	if usageRecord.SimSid == "" {
-		t.Error("expected SimSid to be populated")
-	}
-	if usageRecord.AccountSid == "" {
-		t.Error("expected AccountSid to be populated")
-	}
-	if usageRecord.FleetSid == "" {
-		t.Error("expected FleetSid to be populated")
-	}
-	if usageRecord.NetworkSid == "" {
-		t.Error("expected NetworkSid to be populated")
-	}
-	if usageRecord.IsoCountry == "" {
-		t.Error("expected IsoCountry to be populated")
-	}
-	if usageRecord.FleetSid == "" {
-		t.Error("expected FleetSid to be populated")
-	}
-}
-
-=======
->>>>>>> d96635c (twilio: add new SuperSim client)
 func assertPageExpected(t *testing.T, meta Meta) {
 	if meta.FirstPageURL == "" {
 		t.Error("expected FirstPageURL to be populated")
