@@ -133,6 +133,7 @@ type Client struct {
 
 	// NewSuperSimClient initializes these services
 	SuperSims *SuperSimService
+	Networks  *NetworkService
 
 	// NewNotifyClient initializes these services
 	Credentials *NotifyCredentialsService
@@ -254,6 +255,7 @@ func NewSuperSimClient(accountSid string, authToken string, httpClient *http.Cli
 	c := newNewClient(accountSid, authToken, SuperSimBaseUrl, httpClient)
 	c.APIVersion = SuperSimVersion
 	c.SuperSims = &SuperSimService{client: c}
+	c.Networks = &NetworkService{client: c}
 	return c
 }
 

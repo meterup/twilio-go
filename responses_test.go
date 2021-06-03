@@ -3656,5 +3656,170 @@ var usageRecordResponse = []byte(`
 }
 `)
 
+var networkResponse = []byte(`
+{
+  "friendly_name": "AT&T",
+  "iso_country": "US",
+  "identifiers": [
+    {
+      "mcc": "310",
+      "mnc": "410"
+    }
+  ],
+  "sid": "HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "url": "https://supersim.twilio.com/v1/Networks/HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+}
+`)
+
+var networkPageResponse = []byte(`
+{
+  "meta": {
+    "first_page_url": "https://supersim.twilio.com/v1/Networks?IsoCountry=US&Mnc=410&Mcc=310&PageSize=50&Page=0",
+    "key": "networks",
+    "next_page_url": "https://supersim.twilio.com/v1/Networks?IsoCountry=US&Mnc=410&Mcc=310&PageSize=50&Page=1",
+    "page": 0,
+    "page_size": 50,
+    "previous_page_url": "https://supersim.twilio.com/v1/Networks?IsoCountry=US&Mnc=410&Mcc=310&PageSize=50&Page=0",
+    "url": "https://supersim.twilio.com/v1/Networks?IsoCountry=US&Mnc=410&Mcc=310&PageSize=50&Page=0"
+  },
+  "networks": [
+    {
+      "friendly_name": "AT&T",
+      "iso_country": "US",
+      "identifiers": [
+        {
+          "mcc": "310",
+          "mnc": "410"
+        }
+      ],
+      "sid": "HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "url": "https://supersim.twilio.com/v1/Networks/HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    },
+    {
+      "friendly_name": "AT&T",
+      "iso_country": "US",
+      "identifiers": [
+        {
+          "mcc": "310",
+          "mnc": "410"
+        }
+      ],
+      "sid": "HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "url": "https://supersim.twilio.com/v1/Networks/HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    }
+  ]
+}
+`)
+
+var networkAccessProfileResponse = []byte(`
+{
+  "unique_name": "My Network Access Profile",
+  "sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "date_created": "2020-05-01T20:00:00Z",
+  "date_updated": "2020-05-01T20:00:00Z",
+  "url": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "links": {
+    "networks": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Networks"
+  }
+}
+`)
+
+var networkAccessProfilePageResponse = []byte(`
+{
+  "network_access_profiles": [
+    {
+      "unique_name": "My Network Access Profile",
+      "sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "date_created": "2020-05-01T20:00:00Z",
+      "date_updated": "2020-05-01T20:00:00Z",
+      "url": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "links": {
+        "networks": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Networks"
+      }
+    },
+    {
+      "unique_name": "My Network Access Profile",
+      "sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "date_created": "2020-05-01T20:00:00Z",
+      "date_updated": "2020-05-01T20:00:00Z",
+      "url": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "links": {
+        "networks": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Networks"
+      }
+    }
+  ],
+  "meta": {
+    "first_page_url": "https://supersim.twilio.com/v1/NetworkAccessProfiles?PageSize=50&Page=0",
+    "key": "network_access_profiles",
+    "next_page_url": "https://supersim.twilio.com/v1/NetworkAccessProfiles?PageSize=50&Page=1",
+    "page": 0,
+    "page_size": 50,
+    "previous_page_url": "https://supersim.twilio.com/v1/NetworkAccessProfiles?PageSize=50&Page=0",
+    "url": "https://supersim.twilio.com/v1/NetworkAccessProfiles?PageSize=50&Page=0"
+  }
+}
+`)
+
+var napNetworkResponse = []byte(`
+{
+  "sid": "HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "network_access_profile_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "friendly_name": "AT&T",
+  "iso_country": "us",
+  "identifiers": [
+    {
+      "mcc": "310",
+      "mnc": "410"
+    }
+  ],
+  "url": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Networks/HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+}
+`)
+
+var napNetworkPageResponse = []byte(`
+{
+  "meta": {
+    "first_page_url": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Networks?PageSize=50&Page=0",
+    "key": "networks",
+    "next_page_url": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Networks?PageSize=50&Page=1",
+    "page": 0,
+    "page_size": 50,
+    "previous_page_url": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Networks?PageSize=50&Page=0",
+    "url": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Networks?PageSize=50&Page=0"
+  },
+  "networks": [
+    {
+      "sid": "HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "network_access_profile_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "friendly_name": "AT&T",
+      "iso_country": "us",
+      "identifiers": [
+        {
+          "mcc": "310",
+          "mnc": "410"
+        }
+      ],
+      "url": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Networks/HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    },
+    {
+      "sid": "HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "network_access_profile_sid": "HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "friendly_name": "AT&T",
+      "iso_country": "us",
+      "identifiers": [
+        {
+          "mcc": "310",
+          "mnc": "410"
+        }
+      ],
+      "url": "https://supersim.twilio.com/v1/NetworkAccessProfiles/HAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Networks/HWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    }
+  ]
+}
+`)
+
 const from = "+19253920364"
 const to = "+19253920364"
