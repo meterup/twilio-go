@@ -302,6 +302,13 @@ const StatusProcessing = Status("processing")
 
 const StatusRead = Status("read")
 
+// Super SIM statuses
+
+const StatusNew = Status("new")
+const StatusReady = Status("ready")
+const StatusScheduled = Status("scheduled")
+const StatusInactive = Status("inactive")
+
 // Shared statuses
 
 const StatusActive = Status("active")
